@@ -1,3 +1,8 @@
+# !!!!db config
+/src/main/resources/application.yaml
+**/application.yaml
+
+
 HELP.md
 .gradle
 build/
