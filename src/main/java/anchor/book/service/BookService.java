@@ -39,12 +39,30 @@ public class BookService {
       //  bookToCreate.setSeries(seriesOptional);
         return bookRepository.save(bookToCreate);
     }
+    //id로 책 검색
+    public Book findBookById(long id){
+        Optional<Book> bookOptional = bookRepository.findById(id);
+        if(!bookOptional.isPresent()){
+            throw new EntityNotFoundException("해당 id를 가진 책이 존재하지 않습니다. book_id : "+ id);
+        }
+        return bookOptional.get();
+    }
 
+    //이름 포함한 책리스트 리턴
+    public List<Book> findBookListByName(String str) {
+        List<Book> list = bookRepository.findAllByName(str);
+
+        return list;
+    }
     //시리즈 저장
     public Series createSeries(SeriesCreationRequest series) {
         Series seriesToCreate = new Series();
         BeanUtils.copyProperties(series, seriesToCreate);
         seriesToCreate.setName(series.name);
         return seriesRepository.save(seriesToCreate);
+    }
+
+    public List<Series> findSeries() {
+        return seriesRepository.findAll();
     }
 }

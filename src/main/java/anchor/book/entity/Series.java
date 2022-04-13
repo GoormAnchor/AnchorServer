@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Series {
     @Id @GeneratedValue
     @Column(name = "series_id")
-    private long id;
+    private Long id;
 
     @Column(name = "series_name")
     private String name;

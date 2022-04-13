@@ -21,6 +21,11 @@ public class BookController {
         return ResponseEntity.ok(bookService.findBooks());
     }
 
+    @GetMapping("/findAllSeries")
+    public ResponseEntity<List<Series>> findSeries(){
+        return ResponseEntity.ok(bookService.findSeries());
+    }
+
     @PostMapping("/createBook")
     public ResponseEntity<Book> createBook (@RequestBody BookCreationRequest request) {
         return ResponseEntity.ok(bookService.createBook(request));
@@ -30,4 +35,10 @@ public class BookController {
     public ResponseEntity<Series> createSeries (@RequestBody SeriesCreationRequest request) {
         return ResponseEntity.ok(bookService.createSeries(request));
     }
+
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Book> findBookById(@PathVariable Long id) {
+        return ResponseEntity.ok(bookService.findBookById(id));
+    }
+
 }

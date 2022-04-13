@@ -27,13 +27,13 @@ public class Book {
     @Column
     private String isbn;
     private String publisher;
-    private long price;
+    private Long price;
 
     //시리즈
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "series_id")
     private Series series;
-    private long series_num;
+    private Long series_num;
 
     private LocalDateTime created_at;
 
