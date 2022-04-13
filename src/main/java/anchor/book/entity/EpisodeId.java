@@ -11,7 +11,7 @@ import java.util.Objects;
 public class EpisodeId implements Serializable {
 
     private long book_id;
-    private long episode_num;
+    private Long episode_num;
 
     public EpisodeId(long bookId, long episodeNum){
         this.book_id = bookId;
