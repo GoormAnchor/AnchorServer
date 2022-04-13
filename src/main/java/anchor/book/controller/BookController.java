@@ -36,9 +36,13 @@ public class BookController {
         return ResponseEntity.ok(bookService.createSeries(request));
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Book> findBookById(@PathVariable Long id) {
+    @GetMapping("/find/id")
+    public ResponseEntity<Book> findBookById(@RequestParam long id) {
         return ResponseEntity.ok(bookService.findBookById(id));
     }
 
+    @GetMapping("/find/name")
+    public ResponseEntity<List<Book>> findBookListByName(@RequestParam String containWord) {
+        return ResponseEntity.ok(bookService.findBookListByName(containWord));
+    }
 }
