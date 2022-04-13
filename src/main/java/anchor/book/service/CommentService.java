@@ -1,0 +1,56 @@
+package anchor.book.service;
+
+import anchor.book.entity.Comment;
+import anchor.book.entity.Episode;
+import anchor.book.entity.EpisodeId;
+import anchor.book.repository.CommentRepository;
+import anchor.book.repository.EpisodeRepository;
+import anchor.book.request.CommentCreationRequest;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+@RequiredArgsConstructor
+public class CommentService {
+    private final CommentRepository commentRepository;
+    private final EpisodeRepository episodeRepository;
+
+    //코멘트 전체 조회
+    public List<Comment> findAllComments(){
+        return commentRepository.findAll();
+    }
+
+    //책 별 코멘트 조회
+    public List<Comment> findCommentsByBook(long book_id){
+        return commentRepository.findCommentsByEpisode_Book_Id(book_id);
+    }
+    //에피소드 별 코멘트 조회
+    public List<Comment> findCommentsByEpisode(long book_id, long episode_num){
+        //TODO: 에피소드 찾기
+        EpisodeId episodeId = new EpisodeId(book_id,episode_num);
+        Optional<Episode> episode = episodeRepository.findById(episodeId);
+        if(!episode.isPresent()){
+            //에피소드가 없을 때
+        }
+        return commentRepository.findCommentsByEpisode(episode);
+    }
+
+    //코멘트 추가
+    public Comment createComment(CommentCreationRequest request){
+        //TODO: request 검증
+        Comment commentToCreate = new Comment();
+        BeanUtils.copyProperties(request, commentToCreate);
+
+        return commentRepository.save(commentToCreate);
+
+    }
+
+    //코멘트 삭제
+    public void deleteComment(long commentId){
+        commentRepository.deleteById(commentId);
+    }
+}
