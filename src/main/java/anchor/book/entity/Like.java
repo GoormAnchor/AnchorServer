@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "like")
+@Table(name = "likes")
 public class Like {
     @EmbeddedId
     private LikeId id;
@@ -20,7 +20,7 @@ public class Like {
     private User user;
 
     @MapsId("comment_id")
-    @OneToOne(optional = false,fetch = FetchType.LAZY)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "comment_id", nullable = false)
     private Comment comment;
 

@@ -6,6 +6,11 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
+
+/*
+*
+* like 엔티티의 composite key 구성 클래스
+ */
 @Embeddable
 @NoArgsConstructor
 public class LikeId implements Serializable {
