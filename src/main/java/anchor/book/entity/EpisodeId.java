@@ -5,7 +5,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
-
+/*
+복합키를 위한 클래스
+ */
 @Embeddable
 @NoArgsConstructor
 public class EpisodeId implements Serializable {

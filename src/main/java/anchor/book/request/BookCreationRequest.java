@@ -2,7 +2,9 @@ package anchor.book.request;
 
 import anchor.book.entity.Series;
 import lombok.Data;
-
+/*
+책 생성 때 필요한 데이터들을 data 객체로 묶어줌
+ */
 @Data
 public class BookCreationRequest {
     private long id;
