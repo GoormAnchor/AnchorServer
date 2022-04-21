@@ -14,4 +14,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
      */
     @Query("select b from Book b where b.name like %?1%")
     List<Book> findAllByName(String str);
+
+    @Query("select b from Book b where b.series.id=:id")
+    List<Book> findAllBySeriesIs(Long id);
 }

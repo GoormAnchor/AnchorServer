@@ -20,7 +20,7 @@ public class BookController {
     모든 책 리스트 리턴.
      */
     @GetMapping("/findAll")
-    public ResponseEntity<List<Book>> findBooks(){
+    public ResponseEntity<List<Book>> findBooks() {
         return ResponseEntity.ok(bookService.findBooks());
     }
 
@@ -28,9 +28,10 @@ public class BookController {
     모든 시리즈 리스트 리턴
      */
     @GetMapping("/findAllSeries")
-    public ResponseEntity<List<Series>> findSeries(){
+    public ResponseEntity<List<Series>> findSeries() {
         return ResponseEntity.ok(bookService.findSeries());
     }
+
     /*
     책 추가 api. (post 요청 - @RequestBody 어노테이션으로 http 바디 내용 인식)
     ! 개발중
@@ -62,5 +63,13 @@ public class BookController {
     @GetMapping("/find/name")
     public ResponseEntity<List<Book>> findBookListByName(@RequestParam String containWord) {
         return ResponseEntity.ok(bookService.findBookListByName(containWord));
+    }
+
+    /*
+    시리즈 내의 모든 책 리스트 리턴
+     */
+    @GetMapping("/find/series")
+    public ResponseEntity<List<Book>> findBookBySeries(@RequestParam Long id) {
+        return ResponseEntity.ok(bookService.findBookBySeries(id));
     }
 }
