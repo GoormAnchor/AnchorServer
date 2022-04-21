@@ -23,7 +23,7 @@ public class User {
     @Id
     @Column(name = "USER_SEQ")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userSeq;
+    private Long user_seq;
 
     @Column(name = "USER_ID", length = 64, unique = true)
     @NotNull
