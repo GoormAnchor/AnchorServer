@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class Book {
     @Id @GeneratedValue
     @Column(name = "book_id")
-    private long id;
+    private Long id;
 
     @Column(name = "book_name")
     private String name;
@@ -28,9 +28,10 @@ public class Book {
     private String isbn;
     private String publisher;
     private Long price;
+    private String book_image;
 
     //시리즈
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "series_id")
     private Series series;
     private Long series_num;

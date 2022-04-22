@@ -14,4 +14,5 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
      */
     List<Comment> findCommentsByEpisode_Book_Id(long book_id);
     List<Comment> findCommentsByEpisode(Optional<Episode> episode);
+
 }

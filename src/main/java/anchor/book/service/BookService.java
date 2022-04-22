@@ -65,4 +65,11 @@ public class BookService {
     public List<Series> findSeries() {
         return seriesRepository.findAll();
     }
+
+    //시리즈 내의 모든 책 리스트 리턴
+    public List<Book> findBookBySeries(Long id) {
+        List<Book> list = bookRepository.findAllBySeriesIs(id);
+
+        return list;
+    }
 }
