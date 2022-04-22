@@ -1,5 +1,6 @@
 package anchor.book.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,6 +38,9 @@ public class Book {
     private Long series_num;
 
     private LocalDateTime created_at;
+
+    @Column
+    private String book_image;
 
 
 }
