@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController // rest api 컨트롤러 어노테이션
 @RequestMapping(value = "api/book") //이 클래스의 api url은 localhost/api/book/으로 시작됨
 @RequiredArgsConstructor
