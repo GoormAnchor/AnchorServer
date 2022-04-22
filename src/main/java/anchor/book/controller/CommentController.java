@@ -33,6 +33,13 @@ public class CommentController {
         return ResponseEntity.ok(commentService.findCommentsByBook(bookId));
     }
     /*
+    유저 id별 코멘트 조회
+     */
+    @GetMapping("/find/userseq")
+    public ResponseEntity<List<Comment>> findCommentsByUserSeq(@RequestParam Long userSeq) {
+        return ResponseEntity.ok(commentService.findByUserSeq(userSeq));
+    }
+    /*
     코멘트 생성 api
      */
     @PostMapping("/createComment")

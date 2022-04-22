@@ -37,10 +37,11 @@ public class CommentService {
         return commentRepository.findCommentsByEpisode(episode);
     }
     //유저 id별 코멘트 조회
-    //TODO: 유저 추가 후 확인 필요
-    //public List <Comment> findCommentsByUser(Long userSeq) {
-    //    Optional
-    //}
+    public List <Comment> findByUserSeq(Long userSeq) {
+        List<Comment> list = commentRepository.findByUserSeq(userSeq);
+
+        return list;
+    }
 
     //코멘트 추가
     public Comment createComment(CommentCreationRequest request){
