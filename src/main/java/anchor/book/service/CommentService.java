@@ -2,7 +2,6 @@ package anchor.book.service;
 
 import anchor.book.entity.Comment;
 import anchor.book.entity.Episode;
-import anchor.book.entity.EpisodeId;
 import anchor.book.repository.CommentRepository;
 import anchor.book.repository.EpisodeRepository;
 import anchor.book.request.CommentCreationRequest;
@@ -25,24 +24,24 @@ public class CommentService {
     }
 
     //책 별 코멘트 조회
-    public List<Comment> findCommentsByBook(long book_id){
-        return commentRepository.findCommentsByEpisode_Book_Id(book_id);
+    public List<Comment> findCommentsByBook(Long book_id){
+        return commentRepository.findCommentsByBook_Id(book_id);
     }
     //에피소드 별 코멘트 조회
-    public List<Comment> findCommentsByEpisode(long book_id, long episode_num){
+    public List<Comment> findCommentsByEpisode(long book_id, long episode_id){
         //TODO: 에피소드 찾기
-        EpisodeId episodeId = new EpisodeId(book_id,episode_num);
-        Optional<Episode> episode = episodeRepository.findById(episodeId);
+        Optional<Episode> episode = episodeRepository.findById(episode_id);
         if(!episode.isPresent()){
             //에피소드가 없을 때
         }
         return commentRepository.findCommentsByEpisode(episode);
     }
     //유저 id별 코멘트 조회
-    //TODO: 유저 추가 후 확인 필요
-    //public List <Comment> findCommentsByUser(Long userSeq) {
-    //    Optional
-    //}
+    public List <Comment> findByUserSeq(Long userSeq) {
+        List<Comment> list = commentRepository.findByUserSeq(userSeq);
+
+        return list;
+    }
 
     //코멘트 추가
     public Comment createComment(CommentCreationRequest request){
