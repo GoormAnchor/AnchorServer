@@ -10,10 +10,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "episode")
 public class Episode {
-    @EmbeddedId
-    private EpisodeId id;
+    @Id @GeneratedValue
+    @Column(name = "episode_id")
+    private Long episodeId;
 
-    @MapsId("book_id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;

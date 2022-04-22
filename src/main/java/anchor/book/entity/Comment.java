@@ -19,18 +19,23 @@ public class Comment {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime created_at;
+
     private String content;
 
     //fk
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_seq")
     private User user;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-            @JoinColumn(name = "book_id", referencedColumnName = "book_id"),
-            @JoinColumn(name = "episode_num", referencedColumnName = "episode_num"),
-    })
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "book_id", referencedColumnName = "book_id")
+    private Book book;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "episode_id", referencedColumnName = "episode_id")
     private Episode episode;
+
+    private Long likes;
 //    private long book_id;
 
 
