@@ -1,14 +1,19 @@
 package anchor.book.service;
 
+import anchor.book.entity.Book;
 import anchor.book.entity.Comment;
 import anchor.book.entity.Episode;
+import anchor.book.entity.User;
+import anchor.book.repository.BookRepository;
 import anchor.book.repository.CommentRepository;
 import anchor.book.repository.EpisodeRepository;
+import anchor.book.repository.UserRepository;
 import anchor.book.request.CommentCreationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +22,8 @@ import java.util.Optional;
 public class CommentService {
     private final CommentRepository commentRepository;
     private final EpisodeRepository episodeRepository;
+    private final BookRepository bookRepository;
+    private final UserRepository userRepository;
 
     //코멘트 전체 조회
     public List<Comment> findAllComments(){
@@ -46,8 +53,18 @@ public class CommentService {
     //코멘트 추가
     public Comment createComment(CommentCreationRequest request){
         //TODO: request 검증
+        Optional<Book> book = bookRepository.findById(request.getBook_id());
+        if (!book.isPresent())
+            throw new EntityNotFoundException("book_id Not Found");
+
+        Optional<User> user = userRepository.findById(request.getUser_seq());
+        if (!user.isPresent())
+            throw new EntityNotFoundException("user_seq Not Found");
+
         Comment commentToCreate = new Comment();
         BeanUtils.copyProperties(request, commentToCreate);
+        commentToCreate.setBook(book.get());
+        commentToCreate.setUser(user.get());
 
         return commentRepository.save(commentToCreate);
 
