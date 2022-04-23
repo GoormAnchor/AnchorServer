@@ -1,5 +1,6 @@
 package anchor.book.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,6 +30,7 @@ public class Comment {
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "book_id", referencedColumnName = "book_id")
+    @JsonIgnore
     private Book book;
 
     @ManyToOne(fetch = FetchType.EAGER)

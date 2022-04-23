@@ -39,8 +39,5 @@ public class Book {
 
     private LocalDateTime created_at;
 
-    @Column
-    private String book_image;
-
 
 }
