@@ -70,8 +70,8 @@ public class User {
     @NotNull
     private LocalDateTime createdAt;
 
-    @Column(name = "MODIFIED_AT")
-    @NotNull
-    private LocalDateTime modifiedAt;
+    //@Column(name = "MODIFIED_AT")
+    //@NotNull
+    //private LocalDateTime modifiedAt;
 
 }
