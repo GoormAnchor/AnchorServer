@@ -38,7 +38,7 @@ public class Comment {
     private Episode episode;
 
     private Long likes;
-//    private long book_id;
+
 
 
 }
