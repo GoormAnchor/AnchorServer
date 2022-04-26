@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class CommentCreationRequest {
     private Long user_seq; //유저 번호
     private String content;
-    private Long book_id = 1L;
+    private Long book_id;
     private Long episode_id;
     private LocalDateTime created_at = LocalDateTime.now();
     private Long likes = 0L;

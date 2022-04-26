@@ -73,4 +73,12 @@ public class BookController {
     public ResponseEntity<List<Book>> findBookBySeries(@RequestParam Long id) {
         return ResponseEntity.ok(bookService.findBookBySeries(id));
     }
+
+    /*
+    유저가 코멘트 작성한 책 리스트 조회
+     */
+    @GetMapping("/commentedBook")
+    public ResponseEntity<List<Book>> findCommentedSeries(@RequestParam Long userSeq) {
+        return ResponseEntity.ok(bookService.findCommentedBookId(userSeq));
+    }
 }
