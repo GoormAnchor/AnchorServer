@@ -12,7 +12,8 @@ import java.util.List;
 * TODO: 개발중입니다. (테스트 x)
 *
  */
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+
+@CrossOrigin(origins = "http://localhost:3000, http://127.0.0.1:3000")
 @RestController
 @RequestMapping(value = "api/comment")
 @RequiredArgsConstructor
