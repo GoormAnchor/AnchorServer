@@ -72,4 +72,11 @@ public class BookService {
 
         return list;
     }
+
+    //유저가 코멘트 작성한 책 리스트 조회
+    public List<Book> findCommentedBookId(Long userSeq) {
+        List<Book> list = bookRepository.findCommentedBookId(userSeq);
+
+        return list;
+    }
 }

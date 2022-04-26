@@ -1,6 +1,5 @@
 package anchor.book.repository;
 
-import anchor.book.entity.Book;
 import anchor.book.entity.Comment;
 import anchor.book.entity.Episode;
 import org.springframework.data.jpa.repository.JpaRepository;

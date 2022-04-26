@@ -1,9 +1,6 @@
 package anchor.book.service;
 
-import anchor.book.entity.Book;
-import anchor.book.entity.Comment;
-import anchor.book.entity.Episode;
-import anchor.book.entity.User;
+import anchor.book.entity.*;
 import anchor.book.repository.BookRepository;
 import anchor.book.repository.CommentRepository;
 import anchor.book.repository.EpisodeRepository;
@@ -43,8 +40,9 @@ public class CommentService {
         }
         return commentRepository.findCommentsByEpisode(episode);
     }
+
     //유저 id별 코멘트 조회
-    public List <Comment> findByUserSeq(Long userSeq) {
+    public List<Comment> findByUserSeq(Long userSeq) {
         List<Comment> list = commentRepository.findByUserSeq(userSeq);
 
         return list;
