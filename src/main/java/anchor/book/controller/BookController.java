@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin(origins = {"http://localhost:3000", "http://127.0.0.1:3000"})
 @RestController // rest api 컨트롤러 어노테이션
 @RequestMapping(value = "api/book") //이 클래스의 api url은 localhost/api/book/으로 시작됨
 @RequiredArgsConstructor
@@ -72,5 +72,13 @@ public class BookController {
     @GetMapping("/find/series")
     public ResponseEntity<List<Book>> findBookBySeries(@RequestParam Long id) {
         return ResponseEntity.ok(bookService.findBookBySeries(id));
+    }
+
+    /*
+    유저가 코멘트 작성한 책 리스트 조회
+     */
+    @GetMapping("/commentedBook")
+    public ResponseEntity<List<Book>> findCommentedSeries(@RequestParam Long userSeq) {
+        return ResponseEntity.ok(bookService.findCommentedBookId(userSeq));
     }
 }

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -52,7 +53,7 @@ public class User {
     private String emailVerifiedYn;
 
     @Column(name = "PROFILE_IMAGE_URL", length = 512)
-    @NotNull
+    //@NotNull
     @Size(max = 512)
     private String profileImageUrl;
 
@@ -66,12 +67,14 @@ public class User {
     @NotNull
     private String roleType;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     @Column(name = "CREATED_AT")
     @NotNull
     private LocalDateTime createdAt;
 
-    //@Column(name = "MODIFIED_AT")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @Column(name = "MODIFIED_AT")
     //@NotNull
-    //private LocalDateTime modifiedAt;
+    private LocalDateTime modifiedAt;
 
 }
