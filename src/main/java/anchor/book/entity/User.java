@@ -24,12 +24,12 @@ public class User {
     @Id
     @Column(name = "USER_SEQ")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_seq;
+    private Long userseq;
 
     @Column(name = "USER_ID", length = 64, unique = true)
     @NotNull
     @Size(max = 64)
-    private String userId;
+    private String userid;
 
     @Column(name = "USERNAME", length = 100)
     @NotNull

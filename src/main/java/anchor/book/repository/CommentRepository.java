@@ -16,7 +16,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findCommentsByBook_Id(Long book_id);
     List<Comment> findCommentsByEpisode(Optional<Episode> episode);
 
-    @Query("select c from Comment c where c.user.user_seq=:UserSeq")
+    @Query("select c from Comment c where c.user.userseq=:UserSeq")
     List<Comment> findByUserSeq(Long UserSeq);
 
 }
