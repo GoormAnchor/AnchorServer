@@ -71,4 +71,10 @@ public class CommentService {
     public void deleteComment(long commentId){
         commentRepository.deleteById(commentId);
     }
+
+    public Comment findById(Long commentId) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new  EntityNotFoundException("comment Not Found"));
+        return comment;
+    }
 }
