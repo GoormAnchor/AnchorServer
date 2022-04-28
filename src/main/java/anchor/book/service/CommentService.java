@@ -49,8 +49,7 @@ public class CommentService {
     }
 
     //코멘트 추가
-    public Comment createComment(CommentCreationRequest request){
-        //TODO: request 검증
+    public Comment createComment(CommentCreationRequest request) {
         Optional<Book> book = bookRepository.findById(request.getBook_id());
         if (!book.isPresent())
             throw new EntityNotFoundException("book_id Not Found");
