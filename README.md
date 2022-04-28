@@ -30,6 +30,17 @@ api/comment/createComment : 코멘트 생성 api
 ### DELETE
 api/comment/delete/{id} : 코멘트 삭제 api
 
+## likes
+
+### GET
+api/likes/comment (@RequestParam Long commentId) : 코멘트의 모든 좋아요 반환
+
+### POST
+api/likes/createLike (body에 "comment"(코멘트 번호), "user"(유저 번호))) : 좋아요 생성 api
+
+### DELETE
+api/likes/delete/{commentId}/{userSeq} : 코멘트 삭제 api
+
 ## user
 
 ### GET

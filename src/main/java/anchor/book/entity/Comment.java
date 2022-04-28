@@ -37,7 +37,7 @@ public class Comment {
     @JoinColumn(name = "episode_id", referencedColumnName = "episode_id")
     private Episode episode;
 
-    private Long likes;
+    //private Long likes;
 //    private long book_id;
 
 
