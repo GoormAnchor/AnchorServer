@@ -30,58 +30,51 @@ pipeline {
           }
         }*/
 
-		stage('Checkout') {
-        	checkout scm
-    	}
+    stage('Checkout') {
+        checkout scm
+    }
 
-
-        // gradle build
-        stage('Bulid Gradle') {
-          agent any
-          steps {
-            echo 'Bulid Gradle'
-            dir ('.'){
+    // gradle build
+    stage('Bulid Gradle') {
+        agent any steps {
+            echo 'Bulid Gradle' dir ('.') {
                 sh './gradlew clean build --exclude-task build.gradle'
             }
-          }
-          post {
-            failure {
-              error 'This pipeline stops here...'
-            }
-          }
         }
-        
-        // docker build
-        stage('Bulid Docker') {
-          agent any
-          steps {
-            echo 'Bulid Docker'
-            script {
+        post {
+            failure {
+                error 'This pipeline stops here...'
+            }
+        }
+    }
+
+    // docker build
+    stage('Bulid Docker') {
+        agent any steps {
+            echo 'Bulid Docker' script {
                 dockerImage = docker.build("anchor-book-be")
             }
-          }
-          post {
-            failure {
-              error 'This pipeline stops here...'
-            }
-          }
         }
+        post {
+            failure {
+                error 'This pipeline stops here...'
+            }
+        }
+    }
 
-        // docker push
-        stage('Push Docker') {
-          agent any
-          steps {
-            echo 'Push Docker'
-            script {
-                  docker.withRegistry('438282170065.dkr.ecr.ap-northeast-2.amazonaws.com/anchor-book-be', 'anchor-ecr-credentials') {
+    // docker push
+    stage('Push Docker') {
+        agent any steps {
+            echo 'Push Docker' script {
+                docker.withRegistry('438282170065.dkr.ecr.ap-northeast-2.amazonaws.com/anchor-book-be', 'anchor-ecr-credentials') {
                     dockerImage.push("latest")
-                  }
+                }
             }
-          }
-          post {
-            failure {
-              error 'This pipeline stops here...'
-            }
-          }
         }
+        post {
+            failure {
+                error 'This pipeline stops here...'
+            }
+        }
+    }
 }
