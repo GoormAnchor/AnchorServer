@@ -5,7 +5,7 @@ pipeline {
     //    pollSCM('*/3 * * * *')
     //}
 
-    environment {
+    /*environment {
         imagename = "docker build로 만들 이미지 이름"
         registryCredential = 'docker hub credential ID'
         dockerImage = ''
@@ -28,7 +28,7 @@ pipeline {
                error 'This pipeline stops here...'
              }
           }
-        }
+        }*/
 
 		stage('Checkout') {
         	checkout scm
