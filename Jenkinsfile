@@ -27,7 +27,8 @@ pipeline {
         // gradle build
         stage('Bulid Gradle') {
             steps {
-                echo 'Bulid Gradle' dir ('.') {
+                echo 'Bulid Gradle'
+                dir ('.') {
                     sh './gradlew clean build --exclude-task build.gradle'
                 }
             }
