@@ -20,6 +20,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     //@Query("select max(series_num) from Book b where book.id=:bookId")
     //Long getMaxSeriesNum(Long bookId);
 
-    @Query("select b from Comment c join Book b on c.book=b.id and c.user.userseq=:userSeq")
+    @Query("select distinct b from Comment c join Book b on c.book=b.id and c.user.userseq=:userSeq")
     List<Book> findCommentedBookId(Long userSeq);
 }
