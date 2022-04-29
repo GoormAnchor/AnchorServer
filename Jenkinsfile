@@ -1,5 +1,5 @@
-pipeline {
-    agent any
+node {
+    //agent any
 
     //triggers {
     //    pollSCM('*/3 * * * *')
