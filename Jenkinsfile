@@ -1,6 +1,7 @@
 pipeline {
     agent any
 
+//
     environment {
         imagename = "anchor-book-be"
         registryCredential = 'anchor-ecr-credentials'
