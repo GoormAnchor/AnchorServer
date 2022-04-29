@@ -1,24 +1,18 @@
 pipeline {
     agent any
 
-    //triggers {
-    //    pollSCM('*/3 * * * *')
-    //}
-
-    /*environment {
-        imagename = "docker build로 만들 이미지 이름"
-        registryCredential = 'docker hub credential ID'
+    environment {
+        imagename = "anchor-book-be"
+        registryCredential = 'anchor-ecr-credentials'
         dockerImage = ''
-    }*/
+    }
 
     stages {
         // git에서 repository clone
         stage('Prepare') {
             steps {
                 echo 'Clonning Repository'
-                git url:'https://github.com/GoormAnchor/AnchorServer',
-                branch:'master',
-                credentialsId: 'anchor-repo-credentials';
+                git url:'https://github.com/GoormAnchor/AnchorServer', branch:'master', credentialsId: 'anchor-repo-credentials';
             }
             post {
                 success {
@@ -48,7 +42,7 @@ pipeline {
         stage('Bulid Docker') {
             agent any steps {
                 echo 'Bulid Docker' script {
-                    dockerImage = docker.build("anchor-book-be")
+                    dockerImage = docker.build imagename
                 }
             }
             post {
@@ -62,7 +56,7 @@ pipeline {
         stage('Push Docker') {
             agent any steps {
                 echo 'Push Docker' script {
-                    docker.withRegistry('438282170065.dkr.ecr.ap-northeast-2.amazonaws.com/anchor-book-be', 'anchor-ecr-credentials') {
+                    docker.withRegistry('438282170065.dkr.ecr.ap-northeast-2.amazonaws.com/anchor-book-be', anchor-ecr-credentials) {
                         dockerImage.push("latest")
                     }
                 }
