@@ -15,7 +15,10 @@ pipeline {
         // git에서 repository clone
         stage('Prepare') {
             steps {
-                echo 'Clonning Repository' git url:'https://github.com/GoormAnchor/AnchorServer', branch:'master', credentialsId: 'anchor-repo-credentials';
+                echo 'Clonning Repository'
+                git url:'https://github.com/GoormAnchor/AnchorServer',
+                branch:'master',
+                credentialsId: 'anchor-repo-credentials';
             }
             post {
                 success {
