@@ -26,7 +26,7 @@ pipeline {
 
         // gradle build
         stage('Bulid Gradle') {
-            agent any steps {
+            steps {
                 echo 'Bulid Gradle' dir ('.') {
                     sh './gradlew clean build --exclude-task build.gradle'
                 }
@@ -40,7 +40,7 @@ pipeline {
 
         // docker build
         stage('Bulid Docker') {
-            agent any steps {
+            steps {
                 echo 'Bulid Docker' script {
                     dockerImage = docker.build imagename
                 }
@@ -54,7 +54,7 @@ pipeline {
 
         // docker push
         stage('Push Docker') {
-            agent any steps {
+            steps {
                 echo 'Push Docker' script {
                     docker.withRegistry('438282170065.dkr.ecr.ap-northeast-2.amazonaws.com/anchor-book-be', anchor-ecr-credentials) {
                         dockerImage.push("latest")
