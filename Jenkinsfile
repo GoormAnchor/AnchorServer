@@ -1,7 +1,6 @@
 pipeline {
     agent any
 
-//
     environment {
         imagename = "anchor-book-be"
         registryCredential = 'anchor-ecr-credentials'
@@ -13,7 +12,7 @@ pipeline {
         stage('Prepare') {
             steps {
                 echo 'Clonning Repository'
-                git url:'https://github.com/GoormAnchor/AnchorServer', branch:'master', credentialsId: 'anchor-repo-credentials';
+                git url:'https://github.com/GoormAnchor/book', branch:'master', credentialsId: 'anchor-repo-credentials';
             }
             post {
                 success {
