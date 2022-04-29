@@ -42,7 +42,8 @@ pipeline {
         // docker build
         stage('Bulid Docker') {
             steps {
-                echo 'Bulid Docker' script {
+                echo 'Bulid Docker'
+                script {
                     dockerImage = docker.build imagename
                 }
             }
@@ -56,7 +57,8 @@ pipeline {
         // docker push
         stage('Push Docker') {
             steps {
-                echo 'Push Docker' script {
+                echo 'Push Docker'
+                script {
                     docker.withRegistry('438282170065.dkr.ecr.ap-northeast-2.amazonaws.com/anchor-book-be', anchor-ecr-credentials) {
                         dockerImage.push("latest")
                     }
