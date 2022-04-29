@@ -30,14 +30,14 @@ public class Comment {
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "book_id", referencedColumnName = "book_id")
-    @JsonIgnore
+//    @JsonIgnore
     private Book book;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "episode_id", referencedColumnName = "episode_id")
     private Episode episode;
 
-    private Long likes;
+    private Long likes = 0L;
 //    private long book_id;
 
 

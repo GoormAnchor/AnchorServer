@@ -2,6 +2,7 @@
 /src/main/resources/application.yaml
 **/application.yaml
 application.yaml
+*progress*
 
 HELP.md
 .gradle

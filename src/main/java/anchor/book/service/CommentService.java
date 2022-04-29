@@ -49,8 +49,7 @@ public class CommentService {
     }
 
     //코멘트 추가
-    public Comment createComment(CommentCreationRequest request){
-        //TODO: request 검증
+    public Comment createComment(CommentCreationRequest request) {
         Optional<Book> book = bookRepository.findById(request.getBook_id());
         if (!book.isPresent())
             throw new EntityNotFoundException("book_id Not Found");
@@ -71,5 +70,11 @@ public class CommentService {
     //코멘트 삭제
     public void deleteComment(long commentId){
         commentRepository.deleteById(commentId);
+    }
+
+    public Comment findById(Long commentId) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new  EntityNotFoundException("comment Not Found"));
+        return comment;
     }
 }
