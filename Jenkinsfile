@@ -29,7 +29,7 @@ pipeline {
             steps {
                 echo 'Bulid Gradle'
                 dir ('.') {
-                    sh 'chmod +x gradlew'
+                    sh 'chmod +x gradlew' // gradle 실행하기위해 권한추가
                     sh './gradlew clean build --exclude-task test'
                 }
             }
