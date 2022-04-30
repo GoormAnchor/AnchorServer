@@ -30,7 +30,7 @@ pipeline {
                 echo 'Bulid Gradle'
                 dir ('.') {
                     sh 'chmod +x gradlew'
-                    sh './gradlew clean build bootjar'
+                    sh './gradlew clean build --exclude-task test'
                 }
             }
             post {
