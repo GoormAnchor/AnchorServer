@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: anchor-book-be
-  namespace: default
 spec:
   replicas: 3
   selector:
@@ -49,7 +48,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: "backend-ingress"
-  namespace: default
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
