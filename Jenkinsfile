@@ -28,8 +28,10 @@ pipeline {
         stage('Bulid Gradle') {
             steps {
                 echo 'Bulid Gradle'
-                sh 'chmod +x gradlew'
-                sh './gradlew clean build --exclude-task build.gradle'
+                dir ('.') {
+                    sh 'chmod +x gradlew'
+                    sh './gradlew clean build --exclude-task build.gradle'
+                }
             }
             post {
                 failure {
