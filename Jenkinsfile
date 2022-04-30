@@ -61,7 +61,7 @@ pipeline {
                 echo 'Push Docker'
                 script {
                     docker.withRegistry('438282170065.dkr.ecr.ap-northeast-2.amazonaws.com/anchor-book-be', 'ecr:ap-northeast-2:anchor-ecr-credentials') {
-                        dockerImage.push("")
+                        dockerImage.push("latest")
                     }
                 }
             }
