@@ -4,7 +4,7 @@ pipeline {
     environment {
         imagename = "anchor-book-be"
         registryCredential = 'anchor-ecr-credentials'
-        dockerImage = ''
+        dockerImage = 'anchor-book-be'
     }
 
     stages {
@@ -44,9 +44,8 @@ pipeline {
         stage('Bulid Docker') {
             steps {
                 echo 'Bulid Docker'
-                script {
-                    dockerImage = docker.build imagename
-                }
+                sh "docker build . -t 438282170065.dkr.ecr.ap-northeast-2.amazonaws.com/anchor-book-be:${currentBuild.number}"
+                sh "docker build . -t 438282170065.dkr.ecr.ap-northeast-2.amazonaws.com/anchor-book-be:latest"
             }
             post {
                 failure {
@@ -61,15 +60,37 @@ pipeline {
                 echo 'Push Docker'
                 script {
                     docker.withRegistry('https://438282170065.dkr.ecr.ap-northeast-2.amazonaws.com/anchor-book-be', 'ecr:ap-northeast-2:anchor-ecr-credentials') {
-                        dockerImage.push("latest")
+                        sh "docker push 438282170065.dkr.ecr.ap-northeast-2.amazonaws.com/anchor-book-be:${currentBuild.number}"
+                        sh "docker push 438282170065.dkr.ecr.ap-northeast-2.amazonaws.com/anchor-book-be:latest"
                     }
                 }
             }
             post {
                 failure {
                     error 'This pipeline stops here...'
+                }   
+            }
+        }
+
+             // k8s manifest update
+        stage('K8S Manifest Update') {
+            steps {
+                git url: 'https://github.com/GoormAnchor/anchor-k8s-deploy', branch: 'main', credentialsId: 'anchor-repo-credentials'
+
+                sh "sed -i 's/anchor-book-be:.*\$/anchor-book-be:${currentBuild.number}/g' anchor-book-be.yaml"
+                sh "git add anchor-book-be.yaml"
+                sh "git commit -m 'UPDATE anchor-book-be ${currentBuild.number} image versioning'"
+                sshagent(credentials: ['anchor-repo-credentials']) {
+                    sh "git remote set-url origin git@github.com:GoormAnchor/anchor-k8s-deploy.git"
+                    sh "git push -u origin main"
                 }
             }
+            post {
+                failure {
+                  echo 'K8S Manifest Update failure !'
+                }
+            }
+        }
         }
     }
 }
